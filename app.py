@@ -1,10 +1,14 @@
 from flask import Flask
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # .env 파일 불러오기
 
 app = Flask(__name__)
 
-@app.route('/')
-def hello():
-    return "Hello, TLBC! This is Trend Project v2."
+NAVER_CLIENT_ID = os.getenv("NAVER_CLIENT_ID")
+NAVER_CLIENT_SECRET = os.getenv("NAVER_CLIENT_SECRET")
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
+@app.route("/")
+def index():
+    return f"네이버 클라이언트 ID: {NAVER_CLIENT_ID}"
